@@ -30,15 +30,20 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [ # 여기서 내가 가지고 있는 어플리케이션을 알려줘야 함
+CUSTOM_APPS = [ # 내가 직접 만든 어플리케이션 따로 등록.
+    "users.apps.UsersConfig"
+]
+
+SYSTEM_APPS = [ # 여기서 내가 가지고 있는 어플리케이션을 알려줘야 함
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "houses.apps.HousesConfig",
 ]
+
+INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -116,3 +121,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Auth
+
+AUTH_USER_MODEL = "users.User" # 내가 직접 사용하려는 User 모델을 등록해줌.
